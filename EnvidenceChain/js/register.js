@@ -16,6 +16,6 @@ var register={
 
         var data =me.data;
         var json = JSON.stringify(data);
-        console.log(json;
+        console.log(json);
     }
 }
