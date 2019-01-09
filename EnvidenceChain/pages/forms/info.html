@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+< class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
@@ -247,8 +247,9 @@
         <form role="form">
           <div class="box-body">
             <div class="form-group">
-              <label for="exampleInputFile">File input</label>
-              <input type="file" id="exampleInputFile">
+              <label for="front">File input</label>
+              <input type="file" id="front" accept="image/*" onchange="showphoto.up_load(this,0)">
+              <img class="center-block" src="" id="front1" style="width: 100%;">
             </div>
           </div>
           <!-- /.box-body -->
@@ -269,11 +270,13 @@
           <form role="form">
             <div class="box-body">
               <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">
+                <label for="front">File input</label>
+                <input type="file" id="back" accept="image/*" onchange="showphoto.up_load(this,1)">
+                <img class="center-block" src="" id="back1" style="width: 100%;">
               </div>
             </div>
             <!-- /.box-body -->
+
           </form>
         </div>
         <!-- /.box -->
@@ -290,11 +293,13 @@
           <form role="form">
             <div class="box-body">
               <div class="form-group">
-                <label for="exampleInputFile">File input</label>
-                <input type="file" id="exampleInputFile">
+                <label for="front">File input</label>
+                <input type="file" id="take" accept="image/*" onchange="showphoto.up_load(this,2)">
+                <img class="center-block" src="" id="take1" style="width: 100%;">
               </div>
             </div>
             <!-- /.box-body -->
+
           </form>
         </div>
         <!-- /.box -->
@@ -527,5 +532,7 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+  <!-- 引用showphoto.js进行照片解析 -->
+<script src="../../js/showphoto.js"></script>
 </body>
 </html>
