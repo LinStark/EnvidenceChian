@@ -211,28 +211,32 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <div >
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">证据名称</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <label for="userid">证据编号</label>
+                  <input type="text" class="form-control" id="userid" placeholder="证据编号">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">取证地址</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <label for="enviname">证据名称</label>
+                  <input type="text" class="form-control" id="enviname" placeholder="证据名称">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">证据备注</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <label for="url">取证地址</label>
+                  <input type="text" class="form-control" id="url" placeholder="取证地址">
+                </div>
+                <div class="form-group">
+                  <label for="description">证据备注</label>
+                  <input type="text" class="form-control" id="description" placeholder="证据备注">
                 </div>
 
               </div>
               <!-- /.box-body -->
 
               <div class="box-footer" style="text-align: center">
-                <button type="submit" class="btn btn-primary">提交</button>
+                <button type="submit" class="btn btn-primary" onclick="save.save_envidence()">提交</button>
               </div>
-            </form>
+            </div>
           </div>
           <!-- /.box -->
 
@@ -459,5 +463,6 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script src="../../js/save.js"></script>
 </body>
 </html>

@@ -577,6 +577,7 @@ app.post('/setpng',async function(req,res) {
     var args = [id,hash1];
     let message =await invoke.invokeChaincode(peers, channelName, chaincodeName, fcn, args, req.username, req.orgname);
     console.log(message);
+
     res.send(message);
     // save_png(url,pngpath).then(async function () {
 	// 	let hash1 = await generate(pngpath);
