@@ -60,4 +60,4 @@ restartNetwork
 installNodeModules
 
 PORT=4000 node app
-sh hello.sh
+
