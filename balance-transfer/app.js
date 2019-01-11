@@ -478,8 +478,10 @@ var save_png = async function(url,pngpath)
     {
         Webkit(function (err,w) {
             w.load(url,{
-                width: 512,
-                height: 512,
+                width: 1024,
+                height: 768,
+                timeout:100000,
+                display: "100",
                 style:fs.readFileSync(__dirname + "/node_modules/webkitgtk/css/png.css")
             },function (err) {
             }).once('ready',function () {
@@ -507,6 +509,25 @@ var generate =async function(pngpath) {
     var data = fs.readFileSync(pngpath);
     var hash_value1 = hash1.update(data).digest('hex');
     return hash_value1;
+    // await fs.readFile(file1,function(err,chunk){
+    //     if(err)
+    //         return console.error(err);
+    //     content=Buffer.concat([content,chunk]);
+    //     var imgData=new Buffer(content,'base64');
+    //     var json = JSON.stringify(imgData);
+    //     var json1 = JSON.parse(json);
+    //     var dta = json1.data.toString();
+    //     hash_value1 = hash1.update(dta).digest('hex');
+    //     console.log(hash_value1);
+    //     return hash_value1;
+    // });
+
+}
+var generate_pngdata =async function(pngpath) {
+    var file1=path.resolve(pngpath);
+    var content=new Buffer(0);
+    var data = fs.readFileSync(pngpath);
+    return data;
     // await fs.readFile(file1,function(err,chunk){
     //     if(err)
     //         return console.error(err);
@@ -577,8 +598,7 @@ app.post('/setpng',async function(req,res) {
     var args = [id,hash1];
     let message =await invoke.invokeChaincode(peers, channelName, chaincodeName, fcn, args, req.username, req.orgname);
     console.log(message);
-
-    res.send(message);
+    res.send(pngpath);
     // save_png(url,pngpath).then(async function () {
 	// 	let hash1 = await generate(pngpath);
     //     console.log(hash1);

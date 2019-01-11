@@ -40,7 +40,12 @@ var save = {
             },
             error: function (aCallbackData) {
                 var aResult = {State: 0, Datas: aCallbackData.statusText};
-                console.log(aCallbackData);
+                console.log(aCallbackData.responseText);
+                var pngpath = '../../img/png/'+ me.data.userid +'.png';
+                var photo = document.getElementById('photo');
+                $(photo).html('');
+                $(photo).html('<img src="'+pngpath+'" style="width: 100%">');
+                $('#modal-default').modal();
             }
         });
     }
