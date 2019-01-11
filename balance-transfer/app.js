@@ -67,7 +67,7 @@ var connection = mysql.createConnection({      //创建mysql实例
     host:'127.0.0.1',
     port:'3306',
     user:'root',
-    password:'123456',
+    password:'456789',
     database:'lawchain'
 });
 app.options('*', cors());
@@ -546,7 +546,7 @@ app.post('/setpng',async function(req,res) {
     var time = req.body.time;
     var path = req.body.path;
     var username = req.body.username;
-    var pngpath='/home/lin/WebstormProjects/lawchain/public/'+path;
+    var pngpath='/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/'+path;
     var sqlpath = 'public/'+path;
     // var addsql ='INSERT INTO info(userid,url,path,time,description,username,hash) values(?,?,?,?,?,?,?)';
     // var add_param=[userid,url,path,time,description,username,hash_value];
@@ -608,7 +608,7 @@ app.post('/verify',async function(req,res) {
     var username = req.body.username;
     var id = req.body.id;
     var path = req.body.path;
-    var pngpath='/home/lin/WebstormProjects/lawchain/'+path;
+    var pngpath='/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/'+path;
 	let hash = await generate(pngpath);
 	console.log(hash);
     logger.debug('==================== QUERY BY CHAINCODE ==================');
