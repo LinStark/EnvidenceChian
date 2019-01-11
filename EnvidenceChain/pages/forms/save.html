@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | User Profile</title>
+  <title>AdminLTE 2 | General Form Elements</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -30,6 +30,7 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
+
   <header class="main-header">
     <!-- Logo -->
     <a href="index2.html" class="logo">
@@ -146,7 +147,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">导航栏</li>
-        <li class="active">
+        <li >
           <a href="../../pages/examples/userinfo.html">
             <i class="fa fa-dashboard"></i> <span>个人信息</span>
             <span class="pull-right-container">
@@ -171,7 +172,7 @@
             </span>
           </a>
         </li>
-        <li >
+        <li class="active">
           <a href="../../pages/forms/save.html">
             <i class="fa fa-table"></i> <span>录入证据</span>
             <span class="pull-right-container">
@@ -190,105 +191,56 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        User Profile
+        录入证据
       </h1>
       <ol class="breadcrumb">
         <li><a href="../../user.html"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">User profile</li>
+        <li><a href="#">录入证据</a></li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-
       <div class="row">
-        <div class="col-md-3">
-
-          <!-- Profile Image -->
+        <!-- left column -->
+        <div class="col-md-6 col-md-offset-3">
+          <!-- general form elements -->
           <div class="box box-primary">
-            <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
-
-              <h3 class="profile-username text-center">林艺辉</h3>
-
-              <p class="text-muted text-center">公民</p>
-
-
-              </ul>
-
-              <a href="#" class="btn btn-primary btn-block"><b>上传头像</b></a>
+            <div class="box-header with-border">
+              <h3 class="box-title">录入证据</h3>
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form role="form">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">证据名称</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">取证地址</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">证据备注</label>
+                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
 
-          <!-- About Me Box -->
-          <!-- /.box -->
-        </div>
-        <!-- /.col -->
-        <div class="col-md-9">
-          <div class="nav-tabs-custom">
-            <ul class="nav nav-tabs">
-              <li class="active"><a href="#settings" data-toggle="tab">Settings</a></li>
-            </ul>
-            <div class="tab-content">
-
-
-              <div class="active tab-pane" id="settings">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">姓名</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputName" placeholder="姓名">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail" class="col-sm-2 control-label">邮箱</label>
-
-                    <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="邮箱">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputName" class="col-sm-2 control-label">手机号</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputName" placeholder="手机号">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputExperience" class="col-sm-2 control-label">角色</label>
-
-                    <div class="col-sm-10">
-                      <input class="form-control" id="inputExperience" placeholder="角色">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="inputSkills" class="col-sm-2 control-label">个人描述</label>
-
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-danger">Submit</button>
-                    </div>
-                  </div>
-                </form>
               </div>
-              <!-- /.tab-pane -->
-            </div>
-            <!-- /.tab-content -->
+              <!-- /.box-body -->
+
+              <div class="box-footer" style="text-align: center">
+                <button type="submit" class="btn btn-primary">提交</button>
+              </div>
+            </form>
           </div>
-          <!-- /.nav-tabs-custom -->
+          <!-- /.box -->
+
+
         </div>
-        <!-- /.col -->
+        <!--/.col (left) -->
       </div>
       <!-- /.row -->
-
     </section>
     <!-- /.content -->
   </div>
