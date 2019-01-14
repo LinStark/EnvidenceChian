@@ -22,7 +22,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
 var util = require('util');
-var app = express();
+var appapp = express();
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 var bearerToken = require('express-bearer-token');
@@ -676,4 +676,25 @@ app.post('/verify',async function(req,res) {
 
 
 
+})
+app.post('/register',function(req,res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var role = req.body.role;
+    var realname = req.body.realname;
+    var mail = req.body.mail;
+
+
+    var sql = 'INSERT INTO user(username,password,realname,mail) VALUES(?,?,?,?,?)';
+    var param=[username,password,role,realname,mail];
+
+    connection.query(sql,param,function (err,result) {
+        if(err)
+        {
+            console.log('[INSERT ERROR] - ',err.message);
+            return;
+        }
+        console.log('Insert susessful!');
+    })
+    res.send('ok!');
 })

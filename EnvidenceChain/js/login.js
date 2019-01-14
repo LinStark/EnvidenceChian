@@ -24,11 +24,12 @@ var login =
                 dataType: 'json',
                 timeout: 50000,
                 success: function (flag) {
-                   if(flag==1){
-                       window.location.href("../user.html");
+                   if(flag==true){
+                       console.log('hello');
+                       window.location.href='../user.html';
                    }
                    else{
-                       window.location.href("../user.html");
+                       window.location.href='../user.html';
                    }
                 },
             })
