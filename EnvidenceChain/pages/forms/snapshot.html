@@ -29,8 +29,9 @@
   <script src="../../js/jquery.min.js"></script>
   <script src="../../js/jquery.Jcrop.js"></script>
   <script type="text/javascript">
-      jQuery(function($){
 
+      jQuery(function($){
+          snapshot.set_img();
           var jcrop_api;
 
           $('#target').Jcrop({
@@ -68,6 +69,8 @@
           $('#coords input').val('');
       };
       function getvalue() {
+          var path=window.sessionStorage.getItem('path');
+          console.log(path);
           var ori_img=document.getElementById('target');
           var realwidth = ori_img.width;
           var norealwidth = $('#target').width();
@@ -86,7 +89,8 @@
               y1:y1*ratio,
               y2:y2*ratio,
               w:w1*ratio,
-              h:h1*ratio
+              h:h1*ratio,
+              path:path
           }
           var json = JSON.stringify(data);
           console.log(json);
@@ -564,6 +568,6 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<script src="../../js/save.js"></script>
+<script src="../../js/snapshot.js"></script>
 </body>
 </html>

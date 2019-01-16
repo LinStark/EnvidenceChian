@@ -13,7 +13,7 @@ var save = {
         var photo1 = document.getElementById('photo');
         $(photo1).html('');
         var me = save;
-        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDcyMjc5NzEsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1NDcxOTE5NzF9.G7q00B2nh7-WMEh3CZbRRP4mTC4Y7kN3dRhB1biBIkw";
+        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDc2NjcwOTQsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1NDc2MzEwOTR9.ECQDM59WaS4LN_hKKutrZqHuBINyIqehti4ijbpYgB4";
         var aToken = "Bearer "+token;
         me.data.userid = document.getElementById('userid').value;
         me.data.enviname = document.getElementById('enviname').value;
@@ -43,14 +43,12 @@ var save = {
             error: function (aCallbackData) {
                 var aResult = {State: 0, Datas: aCallbackData.statusText};
                 console.log(aCallbackData.responseText);
+                var path = 'png/'+me.data.userid+'.png';
                 var pngpath = '../../img/png/'+ me.data.userid +'.png';
                 console.log(pngpath);
-                window.sessionStorage.setItem('path',pngpath);
-                var photo = document.getElementById('photo');
-                $(photo).html('');
-                console.log('i am here');
-                $(photo).html('<img src="'+pngpath+'" style="width: 100%">');
-                $('#modal-default').modal();
+                window.sessionStorage.setItem('pngpath',pngpath);
+                window.sessionStorage.setItem('path',path);
+                window.location.href='snapshot.html';
             }
         });
     }

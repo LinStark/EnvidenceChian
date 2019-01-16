@@ -22,7 +22,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var http = require('http');
 var util = require('util');
-var appapp = express();
+var app = express();
 var expressJWT = require('express-jwt');
 var jwt = require('jsonwebtoken');
 var bearerToken = require('express-bearer-token');
@@ -68,7 +68,7 @@ var connection = mysql.createConnection({      //创建mysql实例
     port:'3306',
     user:'root',
     password:'456789',
-    database:'lawchain'
+    database:'EnvidenceChain'
 });
 app.options('*', cors());
 app.use(cors());
@@ -542,6 +542,22 @@ var generate_pngdata =async function(pngpath) {
     // });
 
 }
+var get_count = async function(username) {
+    return new Promise((resolve,reject)=>
+    {
+
+        var sql = 'select count(*) as count from info where username=\''+username+'\'';
+        connection.query(sql,function (err,result) {
+            if(err){
+                console.log('SELECT ERROR');
+                return;
+            }
+			else {
+				resolve(result[0].count);
+			}
+        })
+	})
+}
 var save = async function(userid,url,path,time,description,username,hash_value)
 {
 	return new Promise((resolve,reject)=>
@@ -553,15 +569,19 @@ var save = async function(userid,url,path,time,description,username,hash_value)
                 console.log('[INSERT ERROR] - ',err.message);
                 return;
             }
+            else
+			{
+                console.log('插入成功');
+                resolve('ok');
+			}
         });
-        console.log('插入成功');
-        resolve('ok');
+
+
 	})
 
 
 }
 app.post('/setpng',async function(req,res) {
-    var userid = req.body.uid;
     var url = req.body.url;
     var description = req.body.description;
     var time = req.body.time;
@@ -580,6 +600,8 @@ app.post('/setpng',async function(req,res) {
     await save_png(url,pngpath);
     let hash1 = await generate(pngpath);
     console.log(hash1);
+    let userid = await get_count(username);
+    userid++;
     await save(userid,url,sqlpath,time,description,username,hash1);
     // var addsql ='INSERT INTO info(userid,url,path,time,description,username,hash) values(?,?,?,?,?,?,?)';
     // var add_param=[userid,url,path,time,description,username,hash_value];
@@ -676,25 +698,4 @@ app.post('/verify',async function(req,res) {
 
 
 
-})
-app.post('/register',function(req,res) {
-    var username = req.body.username;
-    var password = req.body.password;
-    var role = req.body.role;
-    var realname = req.body.realname;
-    var mail = req.body.mail;
-
-
-    var sql = 'INSERT INTO user(username,password,realname,mail) VALUES(?,?,?,?,?)';
-    var param=[username,password,role,realname,mail];
-
-    connection.query(sql,param,function (err,result) {
-        if(err)
-        {
-            console.log('[INSERT ERROR] - ',err.message);
-            return;
-        }
-        console.log('Insert susessful!');
-    })
-    res.send('ok!');
 })

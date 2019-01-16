@@ -26,7 +26,7 @@ var connection = mysql.createConnection({      //创建mysql实例
     port:'3306',
     user:'root',
     password:'456789',
-    database:'lawchain'
+    database:'EnvidenceChain'
 });
 var save = async function(username,password,role,realname,mail)
 {
@@ -98,11 +98,15 @@ app.post('/snapshot',async function(req,res) {
     var y2=req.body.y2;
     var w1 = req.body.w;
     var h1=req.body.h;
+    var path = req.body.path;
+    var imgpath = '/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/';
+    var pngpath='/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/'+path;
+    console.log(pngpath);
     console.log(x2);
     console.log(y2);
     console.log(y1);
     console.log(x1);
-    gm("/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/dist/img/no1.png").crop(w1,h1,x1,y1).write("./bu.png",function (err) {
+    gm(pngpath).crop(w1,h1,x1,y1).write("/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/bu.png",function (err) {
         if(err){
             console.log(err);
         }
