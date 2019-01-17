@@ -70,6 +70,7 @@
       };
       function getvalue() {
           var path=window.sessionStorage.getItem('path');
+          var username = window.sessionStorage.getItem('username');
           console.log(path);
           var ori_img=document.getElementById('target');
           var realwidth = ori_img.width;
@@ -90,7 +91,8 @@
               y2:y2*ratio,
               w:w1*ratio,
               h:h1*ratio,
-              path:path
+              path:path,
+              username:username
           }
           var json = JSON.stringify(data);
           console.log(json);

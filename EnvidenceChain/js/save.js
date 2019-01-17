@@ -13,7 +13,7 @@ var save = {
         var photo1 = document.getElementById('photo');
         $(photo1).html('');
         var me = save;
-        var token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDc2NjcwOTQsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1NDc2MzEwOTR9.ECQDM59WaS4LN_hKKutrZqHuBINyIqehti4ijbpYgB4";
+        var token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDc3Mjc1NjAsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1NDc2OTE1NjB9.bh0P7O3g2cvmJlVY_XUs06Wl3KTWq-OXc98hKkfk_d4";
         var aToken = "Bearer "+token;
         me.data.userid = document.getElementById('userid').value;
         me.data.enviname = document.getElementById('enviname').value;
@@ -22,7 +22,7 @@ var save = {
         me.data.time = new Date();
         me.data.username = 'lin';
         me.data.path = 'png/' + me.data.userid + '.png';
-        var port='http://localhost:4000/setpng';
+        var port='http://10.41.46.184:4000/setpng';
         var data = me.data;
         var json = JSON.stringify(data);
         console.log(json);
@@ -42,12 +42,14 @@ var save = {
             },
             error: function (aCallbackData) {
                 var aResult = {State: 0, Datas: aCallbackData.statusText};
-                console.log(aCallbackData.responseText);
-                var path = 'png/'+me.data.userid+'.png';
-                var pngpath = '../../img/png/'+ me.data.userid +'.png';
+                // console.log(aCallbackData.responseText);
+                // console.log(aCallbackData);
+                var path = 'png/'+aCallbackData.responseText;
+                var pngpath = '../../img/png/'+ aCallbackData.responseText;
                 console.log(pngpath);
                 window.sessionStorage.setItem('pngpath',pngpath);
                 window.sessionStorage.setItem('path',path);
+                window.sessionStorage.setItem('username',me.data.username);
                 window.location.href='snapshot.html';
             }
         });

@@ -585,10 +585,13 @@ app.post('/setpng',async function(req,res) {
     var url = req.body.url;
     var description = req.body.description;
     var time = req.body.time;
-    var path = req.body.path;
+    // var path = req.body.path;
     var username = req.body.username;
+    let userid = await get_count(username);
+    userid++;
+    var path = 'png/'+userid+'.png';
+    console.log(path);
     var pngpath='/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/'+path;
-    var sqlpath = 'public/'+path;
     // var addsql ='INSERT INTO info(userid,url,path,time,description,username,hash) values(?,?,?,?,?,?,?)';
     // var add_param=[userid,url,path,time,description,username,hash_value];
     // connection.query(addsql,add_param,function (err, result) {
@@ -600,9 +603,7 @@ app.post('/setpng',async function(req,res) {
     await save_png(url,pngpath);
     let hash1 = await generate(pngpath);
     console.log(hash1);
-    let userid = await get_count(username);
-    userid++;
-    await save(userid,url,sqlpath,time,description,username,hash1);
+    await save(userid,url,path,time,description,username,hash1);
     // var addsql ='INSERT INTO info(userid,url,path,time,description,username,hash) values(?,?,?,?,?,?,?)';
     // var add_param=[userid,url,path,time,description,username,hash_value];
     // connection.query(addsql,add_param,function (err, result) {
@@ -620,7 +621,8 @@ app.post('/setpng',async function(req,res) {
     var args = [id,hash1];
     let message =await invoke.invokeChaincode(peers, channelName, chaincodeName, fcn, args, req.username, req.orgname);
     console.log(message);
-    res.send(pngpath);
+    var photo_id =userid+'.png';
+    res.send(photo_id);
     // save_png(url,pngpath).then(async function () {
 	// 	let hash1 = await generate(pngpath);
     //     console.log(hash1);

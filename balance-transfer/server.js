@@ -91,6 +91,39 @@ app.post('/login',async function(req,res) {
     res.send(flag);
 
 })
+var get_userid = async function(username,path) {
+    return new Promise((resolve,reject)=>
+    {
+
+        var sql = 'select userid  from info where username=\''+username+'\' and path=\''+path+'\'' ;
+        connection.query(sql,function (err,result) {
+            if(err){
+                console.log('SELECT ERROR');
+                return;
+            }
+            else {
+                resolve(result[0].userid);
+            }
+        })
+    })
+}
+var update_sql=async function(username,path,pngpath)
+{
+    return new Promise((resolve,reject)=>
+    {
+
+        var sql = 'update info set pngpath=\''+pngpath+'\' where username=\''+username+'\' and path=\''+path+'\'' ;
+        connection.query(sql,function (err,result) {
+            if(err){
+                console.log('SELECT ERROR');
+                return;
+            }
+            else {
+                resolve(true);
+            }
+        })
+    })
+}
 app.post('/snapshot',async function(req,res) {
     var x1 = req.body.x1;
     var x2=req.body.x2;
@@ -99,14 +132,14 @@ app.post('/snapshot',async function(req,res) {
     var w1 = req.body.w;
     var h1=req.body.h;
     var path = req.body.path;
-    var imgpath = '/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/';
+    var username = req.body.username;
+
     var pngpath='/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/'+path;
-    console.log(pngpath);
-    console.log(x2);
-    console.log(y2);
-    console.log(y1);
-    console.log(x1);
-    gm(pngpath).crop(w1,h1,x1,y1).write("/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/bu.png",function (err) {
+    let user_id = await get_userid(username,path);
+    var pngpath1='snap/'+user_id+'.png';
+    var imgpath = '/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/snap/'+user_id+'.png';
+    await update_sql(username,path,pngpath1);
+    gm(pngpath).crop(w1,h1,x1,y1).write(imgpath,function (err) {
         if(err){
             console.log(err);
         }
@@ -114,4 +147,18 @@ app.post('/snapshot',async function(req,res) {
         res.send(true);
     })
 
+})
+app.post('/getdata',async function(req,res) {
+    var username = req.body.username;
+    var sql = 'SELECT * FROM info where username = "'+username+'"';
+    console.log(sql);
+    connection.query(sql,function (err, result) {
+        if(err){
+            console.log('[SELECT ERROR] - ',err.message);
+            return;
+        }
+        console.log(result);
+        console.log('选择成功');
+        res.send(result);
+    });
 })
