@@ -162,3 +162,12 @@ app.post('/getdata',async function(req,res) {
         res.send(result);
     });
 })
+app.post('/pic2b64',async function(req,res) {
+    var path = req.body.path;
+    var imgpath = '/home/lin/go/src/github.com/EnvidenceChian/EnvidenceChain/img/'+path;
+    var imgdata = fs.readFileSync(imgpath);
+    imgdata = new Buffer(imgdata).toString('base64');
+
+    console.log(imgdata);
+    res.send(imgdata);
+})
