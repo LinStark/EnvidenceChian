@@ -13,7 +13,7 @@ var save = {
         var photo1 = document.getElementById('photo');
         $(photo1).html('');
         var me = save;
-        var token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDc3Mjc1NjAsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1NDc2OTE1NjB9.bh0P7O3g2cvmJlVY_XUs06Wl3KTWq-OXc98hKkfk_d4";
+        var token ="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1NDc4MDgyMjYsInVzZXJuYW1lIjoiSmltIiwib3JnTmFtZSI6Ik9yZzEiLCJpYXQiOjE1NDc3NzIyMjZ9.jxN-KrOw3vibyaLYbA5-OKgXxORgiqdRjxCm8e3R4mE";
         var aToken = "Bearer "+token;
         me.data.userid = document.getElementById('userid').value;
         me.data.enviname = document.getElementById('enviname').value;
